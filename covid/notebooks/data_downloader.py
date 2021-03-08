@@ -304,14 +304,14 @@ def collect_US_data(BASE_URL, FOLDER_US, URL_TESTS_US, URL_US_States_vaccine):
 
     df_vac = pd.read_csv(URL_US_States_vaccine)
     df_vac = pd.pivot_table(
-    df_vac.loc[
-            df_vac.loc[:, "Vaccine_Type"] == "All",
-            ["Province_State", "Date", "Doses_admin"],
-        ],
-        values="Doses_admin",
-        index="Date",
-        columns="Province_State",
-    )
+               df_vac.loc[
+                       df_vac.loc[:, "Vaccine_Type"] == "All",
+                       ["Province_State", "Date", "Doses_admin"],
+                   ],
+                   values="Doses_admin",
+                   index="Date",
+                   columns="Province_State",
+               )
     df_vac.fillna(method="ffill", inplace=True)
     df_vac = df_vac.loc[STDT:ENDT]
 
